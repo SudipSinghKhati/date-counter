@@ -47,7 +47,7 @@ function DateCounter() {
             ? "Today is "
             : count > 0
             ? `${count} day from today is `
-            : `${count} day ago was `}
+            : `${Math.abs(count)} day ago was `}
         </span>
         <span>{date.toDateString()}</span>
       </div>
