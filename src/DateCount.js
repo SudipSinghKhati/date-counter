@@ -2,15 +2,11 @@ import { useState } from "react";
 import "./DateCount.css";
 
 function DateCounter() {
-  const [steps, setSteps] = useState(0);
-  const [count, setCount] = useState(2);
-  let currentDate = new Date();
-  let newDate = addDays(currentDate, count);
-  function addDays(date, days) {
-    let result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
+  const [steps, setSteps] = useState(1);
+  const [count, setCount] = useState(0);
+  let date = new Date();
+  date.setDate(date.getDate() + count);
+
   function addSteps() {
     setSteps((s) => s + 1);
   }
@@ -45,12 +41,15 @@ function DateCounter() {
           &#43;
         </button>
       </div>
-      <div>
-        <p className="pragraph">
-          {count >= -1
-            ? `${count} day from now is ${newDate}`
-            : `${count} day ago was ${newDate}`}
-        </p>
+      <div className="pragraph">
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} day from today is`
+            : `${count} day ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
       </div>
     </div>
   );
