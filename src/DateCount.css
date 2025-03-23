@@ -1,0 +1,16 @@
+.StepsData {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  gap: 10px;
+}
+
+.btn {
+  height: 20px;
+}
+
+.pragraph {
+  text-align: center;
+}
