@@ -55,9 +55,11 @@ function DateCounter() {
         </span>
         <span>{date.toDateString()}</span>
       </p>
-      <div className="StepsData">
-        <button onClick={handleReset}>Rest</button>
-      </div>
+      {count !== 0 || steps !== 1 ? (
+        <div className="StepsData">
+          <button onClick={handleReset}>Rest</button>
+        </div>
+      ) : null}
     </div>
   );
 }
