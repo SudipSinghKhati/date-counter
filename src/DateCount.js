@@ -7,41 +7,45 @@ function DateCounter() {
   let date = new Date();
   date.setDate(date.getDate() + count);
 
-  function addSteps() {
-    setSteps((s) => s + 1);
-  }
-  function minusSteps() {
-    setSteps((s) => s - 1);
-  }
-
   function addCount() {
-    setCount((c) => count + steps);
+    setCount(count + steps);
   }
 
   function minusCount() {
-    setCount((c) => count - steps);
+    setCount(count - steps);
+  }
+
+  function handleReset() {
+    setCount(0);
+    setSteps(1);
   }
   return (
     <div>
       <div className="StepsData">
-        <button className="btn" onClick={minusSteps}>
-          &minus;
-        </button>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={steps}
+          onChange={(e) => setSteps(Number(e.target.value))}
+        />
+
         <p>{`Steps: ${steps}`}</p>
-        <button className="btn" onClick={addSteps}>
-          &#43;
-        </button>
       </div>
       <div className="StepsData">
         <button className="btn" onClick={minusCount}>
           &minus;
         </button>
-        <p>{`Count: ${count}`}</p>
+        <input
+          type="text"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
         <button className="btn" onClick={addCount}>
           &#43;
         </button>
       </div>
-      <div className="pragraph">
+      <p className="pragraph">
         <span>
           {count === 0
             ? "Today is "
@@ -50,6 +54,9 @@ function DateCounter() {
             : `${Math.abs(count)} day ago was `}
         </span>
         <span>{date.toDateString()}</span>
+      </p>
+      <div className="StepsData">
+        <button onClick={handleReset}>Rest</button>
       </div>
     </div>
   );
